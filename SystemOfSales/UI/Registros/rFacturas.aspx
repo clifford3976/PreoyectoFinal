@@ -153,12 +153,12 @@
                 <tr>
                     <td>
                         <strong>
-                            <asp:Label ID="Label4" runat="server" Text="Importe: "></asp:Label></strong>
+                            <asp:Label ID="Label4" runat="server"  Text="Importe: "></asp:Label></strong>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <asp:TextBox class="form-control" Height="30" Width="200px" ID="importeTextBox" runat="server" AutoPostBack="true" ReadOnly="true" OnTextChanged="importeTextBox_TextChanged"></asp:TextBox>
+                        <asp:TextBox  class="form-control" Height="30" Width="200px" ID="importeTextBox" runat="server" AutoPostBack="true" ReadOnly="true" OnTextChanged="importeTextBox_TextChanged"></asp:TextBox>
                     </td>
 
                 </tr>
@@ -187,7 +187,7 @@
                         <Columns>
                             <asp:TemplateField ShowHeader="False">
                                 <ItemTemplate>
-                                    <asp:Button ID="RemoverButton" class="btn btn-success btn-sm" runat="server" CausesValidation="False" CommandName="Delete" Text="Remover" OnClick="RemoverButton_Click"></asp:Button>
+                                    <asp:Button ID="Remover" class="btn btn-success btn-sm" runat="server" CausesValidation="False" CommandName="Delete" Text="Remover" OnClick="Remover_Click"></asp:Button>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
@@ -290,6 +290,8 @@
 
                         </div>
                         <div class="modal-footer">
+                            <asp:Button ID="Eliminar" runat="server" CssClass="btn btn-danger" Text="Si" OnClick="Eliminar_Click" />
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                         </div>
                     </div>
                 </div>

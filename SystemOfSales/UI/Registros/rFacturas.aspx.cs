@@ -118,7 +118,7 @@ namespace SystemOfSales.UI.Registros
             }
             if (Utils.ToIntObjetos(ClienteDropDownList.SelectedValue) < 1)
             {
-                Utils.ShowToastr(this, "Todavía no hay un Cliente guardado.", "Error", "error");
+                Utils.ShowToastr(this, "Todavía no hay cliente guardado.", "Error", "error");
                 HayErrores = true;
             }
             if (Utils.ToIntObjetos(RopaDropDownList.SelectedValue) < 1)
@@ -146,65 +146,57 @@ namespace SystemOfSales.UI.Registros
 
             cantidad = Utils.ToInt(cantidadTextBox.Text);
             precio = Utils.ToInt(precioTextBox.Text);
-            importeTextBox.Text = CalculosBLL.CalcularImporte(cantidad, precio).ToString();
+            importeTextBox.Text = Heramientas.Importe(cantidad, precio).ToString();
         }
 
         private void LlenaValores()
         {
-            List<FacturasDetalles> detalle = new List<FacturasDetalles>();
-
-            if (detalleGridView.DataSource != null)
+            FacturasBLL repositorio = new FacturasBLL();
+            int total = 0;
+            List<FacturasDetalles> lista = (List<FacturasDetalles>)ViewState["FacturaDetalle"];
+            foreach (var item in lista)
             {
-                detalle = (List<FacturasDetalles>)detalleGridView.DataSource;
+                total += item.Importe;
             }
-            int Total = 0;
+
             double Itbis = 0;
             double SubTotal = 0;
-            foreach (var item in detalle)
-            {
-                Total += item.Importe;
-            }
-            Itbis = Total * 0.18f;
-            SubTotal = Total - Itbis;
+            Itbis = total * 0.18f;
+            SubTotal = total - Itbis;
             subtotalTextBox.Text = SubTotal.ToString();
             itbisTextBox.Text = Itbis.ToString();
-            totalTextBox.Text = Total.ToString();
+            totalTextBox.Text = total.ToString();
         }
+        /* private void Valores(int importe)
+         {
+             int Total = importe;
+             double Itbis = 0;
+             double SubTotal = 0;
 
-        private void Valores(int importe)
-        {
-            int Total = importe;
-            double Itbis = 0;
-            double SubTotal = 0;
-
-            Itbis = Total * 0.18f;
-            SubTotal = Total - Itbis;
-            subtotalTextBox.Text = SubTotal.ToString();
-            itbisTextBox.Text = Itbis.ToString();
-            totalTextBox.Text = Total.ToString();
-        }
+             Itbis = Total * 0.18f;
+             SubTotal = Total - Itbis;
+             subtotalTextBox.Text = SubTotal.ToString();
+             itbisTextBox.Text = Itbis.ToString();
+             totalTextBox.Text = Total.ToString();
+         }*/
 
         private void RebajaValores()
         {
-            List<FacturasDetalles> detalle = new List<FacturasDetalles>();
-
-            if (detalleGridView.DataSource != null)
+            FacturasBLL repositorio = new FacturasBLL();
+            int total = 0;
+            List<FacturasDetalles> lista = (List<FacturasDetalles>)ViewState["FacturaDetalle"];
+            foreach (var item in lista)
             {
-                detalle = (List<FacturasDetalles>)detalleGridView.DataSource;
+                total += item.Importe;
             }
-            int Total = 0;
+            total *= (-1);
             double Itbis = 0;
             double SubTotal = 0;
-            foreach (var item in detalle)
-            {
-                Total -= item.Importe;
-            }
-            Total *= (-1);
-            Itbis = Total * 0.18f;
-            SubTotal = Total - Itbis;
+            Itbis = total * 0.18f;
+            SubTotal = total - Itbis;
             subtotalTextBox.Text = SubTotal.ToString();
             itbisTextBox.Text = Itbis.ToString();
-            totalTextBox.Text = Total.ToString();
+            totalTextBox.Text = total.ToString();
         }
 
         protected void agregarLinkButton_Click(object sender, EventArgs e)
@@ -221,7 +213,7 @@ namespace SystemOfSales.UI.Registros
                 int precio = Utils.ToInt(precioTextBox.Text);
                 int importe = Utils.ToInt(importeTextBox.Text);
 
-                //var dat = new DateTime(2019, 03, 15);
+                
                 int ropaId = Utils.ToIntObjetos(RopaDropDownList.SelectedValue);
                 string descripcion = Heramientas.Descripcion(ropaId);
 
@@ -229,12 +221,13 @@ namespace SystemOfSales.UI.Registros
                 {
                     facturas.Detalles = (List<FacturasDetalles>)ViewState["FacturaDetalle"];
                 }
-                Valores(importe);
+              
                 totalTextBox.Text = importe.ToString();
 
                 facturas.Detalles.Add(new FacturasDetalles(0, Utils.ToInt(FacturaIdTextbox.Text), ropaId, descripcion, cantidad, precio, importe));
 
-                
+                LlenaPrecio();
+                LlenaImporte();
 
                 ViewState["FacturaDetalle"] = facturas.Detalles;
                 detalleGridView.DataSource = ViewState["FacturaDetalle"];
@@ -383,6 +376,39 @@ namespace SystemOfSales.UI.Registros
         protected void detalleGridView_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void RemoverButton_Click1(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Remover_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        protected void Eliminar_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = detalleGridView.SelectedRow;
+            ((List<FacturasDetalles>)detalleGridView.DataSource).RemoveAt(row.RowIndex);
+            detalleGridView.DataSource = ViewState["FacturaDetalle"];
+            detalleGridView.DataBind();
+
+            List<FacturasDetalles> detalle = new List<FacturasDetalles>();
+
+            if (detalleGridView.DataSource != null)
+            {
+                detalle = (List<FacturasDetalles>)detalleGridView.DataSource;
+            }
+            decimal Total = 0;
+            foreach (var item in detalle)
+            {
+                Total -= item.Precio;
+            }
+            RebajaValores();
+            detalleGridView.DataSource = null;
+            detalleGridView.DataBind();
         }
     }
 
