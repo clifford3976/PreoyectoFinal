@@ -13,13 +13,6 @@ namespace SystemOfSales.UI.Registros
 {
     public partial class rFacturas : System.Web.UI.Page
     {
-        /*private Facturas factura = new Facturas();
-        private Repositorio<Clientes> repositorioCliente = new Repositorio<Clientes>();
-        private Repositorio<Ropas> repositorioRopa = new Repositorio<Ropas>();
-        private FacturaRepositorio FacturaRepositorio = new FacturaRepositorio();
-        private List<FacturasDetalles> detalles = new List<FacturasDetalles>();*/
-
-        string condicion = "[Seleccione]";
 
         protected void Page_Load(object sender, EventArgs e)
         {
