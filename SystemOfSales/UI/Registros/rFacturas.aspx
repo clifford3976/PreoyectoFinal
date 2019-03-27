@@ -121,7 +121,7 @@
                 <tr>
                     <td>
 
-                        <asp:TextBox TextMode="Number" class="form-control" Height="30" Width="200px" ID="cantidadTextBox" runat="server" OnTextChanged="cantidadTextBox_TextChanged" AutoPostBack="true"></asp:TextBox>
+                        <asp:TextBox TextMode="Number" class="form-control" Height="30" Width="200px" ID="cantidadTextBox" runat="server" OnTextChanged="cantidadTextBox_TextChanged2" AutoPostBack="true"></asp:TextBox>
                     </td>
 
                 </tr>

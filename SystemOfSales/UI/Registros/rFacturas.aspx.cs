@@ -12,8 +12,15 @@ using SystemOfSales.Utilities;
 namespace SystemOfSales.UI.Registros
 {
     public partial class rFacturas : System.Web.UI.Page
-    { 
-        
+    {
+        /*private Facturas factura = new Facturas();
+        private Repositorio<Clientes> repositorioCliente = new Repositorio<Clientes>();
+        private Repositorio<Ropas> repositorioRopa = new Repositorio<Ropas>();
+        private FacturaRepositorio FacturaRepositorio = new FacturaRepositorio();
+        private List<FacturasDetalles> detalles = new List<FacturasDetalles>();*/
+
+        string condicion = "[Seleccione]";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -111,7 +118,7 @@ namespace SystemOfSales.UI.Registros
             }
             if (Utils.ToIntObjetos(ClienteDropDownList.SelectedValue) < 1)
             {
-                Utils.ShowToastr(this, "Todavía no hay cliente guardado.", "Error", "error");
+                Utils.ShowToastr(this, "Todavía no hay un Cliente guardado.", "Error", "error");
                 HayErrores = true;
             }
             if (Utils.ToIntObjetos(RopaDropDownList.SelectedValue) < 1)
@@ -139,46 +146,65 @@ namespace SystemOfSales.UI.Registros
 
             cantidad = Utils.ToInt(cantidadTextBox.Text);
             precio = Utils.ToInt(precioTextBox.Text);
-            importeTextBox.Text = Heramientas.Importe(cantidad, precio).ToString();
+            importeTextBox.Text = CalculosBLL.CalcularImporte(cantidad, precio).ToString();
         }
 
         private void LlenaValores()
         {
-            FacturasBLL repositorio = new FacturasBLL();
-            int total = 0;
-            List<FacturasDetalles> lista = (List<FacturasDetalles>)ViewState["FacturaDetalle"];
-            foreach (var item in lista)
-            {
-                total += item.Importe;
-            }
+            List<FacturasDetalles> detalle = new List<FacturasDetalles>();
 
+            if (detalleGridView.DataSource != null)
+            {
+                detalle = (List<FacturasDetalles>)detalleGridView.DataSource;
+            }
+            int Total = 0;
             double Itbis = 0;
             double SubTotal = 0;
-            Itbis = total * 0.18f;
-            SubTotal = total - Itbis;
+            foreach (var item in detalle)
+            {
+                Total += item.Importe;
+            }
+            Itbis = Total * 0.18f;
+            SubTotal = Total - Itbis;
             subtotalTextBox.Text = SubTotal.ToString();
             itbisTextBox.Text = Itbis.ToString();
-            totalTextBox.Text = total.ToString();
+            totalTextBox.Text = Total.ToString();
         }
-        
+
+        private void Valores(int importe)
+        {
+            int Total = importe;
+            double Itbis = 0;
+            double SubTotal = 0;
+
+            Itbis = Total * 0.18f;
+            SubTotal = Total - Itbis;
+            subtotalTextBox.Text = SubTotal.ToString();
+            itbisTextBox.Text = Itbis.ToString();
+            totalTextBox.Text = Total.ToString();
+        }
 
         private void RebajaValores()
         {
-            FacturasBLL repositorio = new FacturasBLL();
-            int total = 0;
-            List<FacturasDetalles> lista = (List<FacturasDetalles>)ViewState["FacturaDetalle"];
-            foreach (var item in lista)
+            List<FacturasDetalles> detalle = new List<FacturasDetalles>();
+
+            if (detalleGridView.DataSource != null)
             {
-                total += item.Importe;
+                detalle = (List<FacturasDetalles>)detalleGridView.DataSource;
             }
-            total *= (-1);
+            int Total = 0;
             double Itbis = 0;
             double SubTotal = 0;
-            Itbis = total * 0.18f;
-            SubTotal = total - Itbis;
+            foreach (var item in detalle)
+            {
+                Total -= item.Importe;
+            }
+            Total *= (-1);
+            Itbis = Total * 0.18f;
+            SubTotal = Total - Itbis;
             subtotalTextBox.Text = SubTotal.ToString();
             itbisTextBox.Text = Itbis.ToString();
-            totalTextBox.Text = total.ToString();
+            totalTextBox.Text = Total.ToString();
         }
 
         protected void agregarLinkButton_Click(object sender, EventArgs e)
@@ -195,7 +221,7 @@ namespace SystemOfSales.UI.Registros
                 int precio = Utils.ToInt(precioTextBox.Text);
                 int importe = Utils.ToInt(importeTextBox.Text);
 
-                
+                //var dat = new DateTime(2019, 03, 15);
                 int ropaId = Utils.ToIntObjetos(RopaDropDownList.SelectedValue);
                 string descripcion = Heramientas.Descripcion(ropaId);
 
@@ -203,13 +229,12 @@ namespace SystemOfSales.UI.Registros
                 {
                     facturas.Detalles = (List<FacturasDetalles>)ViewState["FacturaDetalle"];
                 }
-              
+                Valores(importe);
                 totalTextBox.Text = importe.ToString();
 
                 facturas.Detalles.Add(new FacturasDetalles(0, Utils.ToInt(FacturaIdTextbox.Text), ropaId, descripcion, cantidad, precio, importe));
 
-                LlenaPrecio();
-                LlenaImporte();
+                
 
                 ViewState["FacturaDetalle"] = facturas.Detalles;
                 detalleGridView.DataSource = ViewState["FacturaDetalle"];
@@ -227,8 +252,7 @@ namespace SystemOfSales.UI.Registros
 
         protected void cantidadTextBox_TextChanged(object sender, EventArgs e)
         {
-            LlenaPrecio();
-            LlenaImporte();
+            
         }
 
         protected void NuevoButton_Click(object sender, EventArgs e)
@@ -391,6 +415,17 @@ namespace SystemOfSales.UI.Registros
             RebajaValores();
             detalleGridView.DataSource = null;
             detalleGridView.DataBind();
+        }
+
+        protected void cantidadTextBox_TextChanged1(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void cantidadTextBox_TextChanged2(object sender, EventArgs e)
+        {
+            LlenaPrecio();
+            LlenaImporte();
         }
     }
 
