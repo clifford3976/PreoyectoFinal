@@ -1,6 +1,6 @@
-# SystemOfSales es un sistea de venta de ropas via WEB hecho por Clifford Jeffrey Millien como proyecto final de La materia PROGRAMACION APLICADA 2
+# SystemOfSales es un sistema de venta de ropas via WEB, hecho por Clifford Jeffrey Millien como proyecto final de La materia PROGRAMACION APLICADA 2
 el sistema consiste principalmente a la facturacion de las ventas de ropas
-se compone de los siguientes registros y facturas
+se compone de los siguientes registros y consultas
 Registro de usuario
 registro de Clientes
 Registro de ropas
