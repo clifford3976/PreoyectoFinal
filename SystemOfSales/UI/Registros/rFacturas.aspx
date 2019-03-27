@@ -158,7 +158,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:TextBox  class="form-control" Height="30" Width="200px" ID="importeTextBox" runat="server" AutoPostBack="true" ReadOnly="true" OnTextChanged="importeTextBox_TextChanged"></asp:TextBox>
+                        <asp:TextBox  class="form-control" Height="30" Width="200px" ID="importeTextBox" runat="server" AutoPostBack="true" ReadOnly="false" OnTextChanged="importeTextBox_TextChanged"></asp:TextBox>
                     </td>
 
                 </tr>

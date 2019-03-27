@@ -594,8 +594,8 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>Factura</DataSetName>
-        <Top>3.04167in</Top>
-        <Left>0.94792in</Left>
+        <Top>4.33255in</Top>
+        <Left>0.9375in</Left>
         <Height>0.5in</Height>
         <Width>7in</Width>
         <Style>
@@ -608,8 +608,8 @@
         <Source>Embedded</Source>
         <Value>cmjpng</Value>
         <Sizing>FitProportional</Sizing>
-        <Top>0.68134in</Top>
-        <Left>4.03126in</Left>
+        <Top>1.97222in</Top>
+        <Left>4.02084in</Left>
         <Height>0.5in</Height>
         <Width>0.5625in</Width>
         <ZIndex>1</ZIndex>
@@ -638,8 +638,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox9</rd:DefaultName>
-        <Top>2.79167in</Top>
-        <Left>3.53126in</Left>
+        <Top>4.08255in</Top>
+        <Left>3.52084in</Left>
         <Height>0.25in</Height>
         <Width>1.41667in</Width>
         <ZIndex>2</ZIndex>
@@ -672,8 +672,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>1.22301in</Top>
-        <Left>3.53126in</Left>
+        <Top>2.51389in</Top>
+        <Left>3.52084in</Left>
         <Height>0.25in</Height>
         <Width>1.63542in</Width>
         <ZIndex>3</ZIndex>
@@ -706,8 +706,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
-        <Top>1.50079in</Top>
-        <Left>2.95834in</Left>
+        <Top>2.79167in</Top>
+        <Left>2.94792in</Left>
         <Height>0.25in</Height>
         <Width>2.67708in</Width>
         <ZIndex>4</ZIndex>
@@ -722,8 +722,8 @@
         </Style>
       </Textbox>
       <Line Name="Line1">
-        <Top>2.31961in</Top>
-        <Left>0.21876in</Left>
+        <Top>3.61049in</Top>
+        <Left>0.20834in</Left>
         <Height>0in</Height>
         <Width>8in</Width>
         <ZIndex>5</ZIndex>
@@ -748,8 +748,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>ExecutionTime</rd:DefaultName>
-        <Top>0.68134in</Top>
-        <Left>6.62376in</Left>
+        <Top>1.97222in</Top>
+        <Left>6.61334in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
         <ZIndex>6</ZIndex>
@@ -782,8 +782,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox23</rd:DefaultName>
-        <Top>1.81961in</Top>
-        <Left>3.81126in</Left>
+        <Top>3.11049in</Top>
+        <Left>3.80084in</Left>
         <Height>0.25in</Height>
         <Width>1.13666in</Width>
         <ZIndex>7</ZIndex>
