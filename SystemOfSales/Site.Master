@@ -1,0 +1,112 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="SystemOfSales.Site" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>SystemOfSales</title>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script src="Scripts/popper.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+
+
+
+    <form id="form1" runat="server">
+        <div>
+
+             <div style="background-color: blue; height: 270px;" class="jumbotron jumbotron-fluid">
+            <div class="container"  >
+            <div class="row" style="width: 853px;">
+            <img class="rounded" src="/Imagenes/cmj.png.jpg" alt="" style="width: 250px; height: 170px;"/>
+            <div class="container"  style="width: 602px;">              
+            <h1 style="text-align: center; " top: 0px; class="display-4">Sistema de Venta de Ropas</h1>
+
+            <p style="text-align: center; " top: 0px; class="lead">Te enamoras de nuestro precio</p>
+
+            </div>
+            
+
+             </div>
+
+             </div>
+       
+               <!-- Barra de Navegacion -->
+               <nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
+            <!-- Brand -->
+            <a class="navbar-brand" href="/Default.aspx#">
+                <asp:Image ID="Image1" runat="server" Height="40px" ImageUrl="~/Imagenes/cmj.png.jpg" Width="60px" /></a>
+
+            <!-- Links -->
+            <ul class="navbar-nav" style="width:400px">
+                <li class="nav-item">
+                    <a class="nav-link" href="/Default.aspx#">Inicio</a>
+
+
+
+                     <!-- Dropdown -->
+
+                     <li class="nav-item dropdown" style="width:400px">
+                    <a class="nav-link dropdown-toggle" href="#" id="Registros" data-toggle="dropdown">Registros
+                    </a>
+                    <div class="dropdown-menu bg">
+                        <a class="dropdown-item" href="/UI/Registros/rClientes.aspx">Registro de Clientes</a>
+                        <a class="dropdown-item" href="/UI/Registros/rUsuarios.aspx">Registro de Usuarios</a>
+                        <a class="dropdown-item" href="/UI/Registros/rRopas.aspx">Registro de Ropas</a>
+                         <a class="dropdown-item" href="/UI/Registros/rInventarios.aspx">Registro de Inventarios</a>
+                         <a class="dropdown-item" href="/UI/Registros/rFacturas.aspx">Registro de Facturas</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown" style="width:400px">
+                    <a class="nav-link dropdown-toggle"  href="#" id="Consultas" data-toggle="dropdown">Consultas
+                    </a>
+                    <div class="dropdown-menu bg">
+                        <a class="dropdown-item" href="/UI/Consultas/cClientes.aspx">Consulta de Clientes</a>
+                        <a class="dropdown-item" href="/UI/Consultas/cUsuario.aspx">Consulta de Usuarios</a>
+                        <a class="dropdown-item" href="/UI/Consultas/cRopas.aspx">Consulta de Ropas</a>
+                         <a class="dropdown-item" href="/UI/Consultas/cInventarios.aspx">Consulta de Inventarios</a>
+                         <a class="dropdown-item" href="/UI/Consultas/cFacturas.aspx">Consulta de Facturas</a>
+                 
+                    </div>
+                </li>
+
+                
+                
+                </ul>
+               
+                </nav>
+            </div>
+                   
+        </div>
+       
+        <div style="margin-top: 100px">
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+
+            
+             <footer style="text-align: center">
+                <p>&copy; <%: DateTime.Now.Year %> - CopyRight SystemOfSales</p>
+            </footer>
+
+        </div>
+    </form>
+</body>
+</html>
